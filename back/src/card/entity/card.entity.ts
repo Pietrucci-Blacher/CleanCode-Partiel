@@ -5,23 +5,32 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { CardCategory } from '../interface/card.interface';
+import { nextReviewDate } from '../utils/card.utils';
 
 @Entity()
 export class Card {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ type: 'text' })
   question: string;
 
-  @Column()
+  @Column({ type: 'text' })
   answer: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 100 })
   tag: string;
 
-  @Column()
-  category: string;
+  @Column({
+    type: 'enum',
+    enum: CardCategory,
+    default: CardCategory.FIRST,
+  })
+  category: CardCategory;
+
+  @Column({ type: Date, default: nextReviewDate(CardCategory.FIRST) })
+  nextReview: Date;
 
   @CreateDateColumn()
   createdAt: Date;
