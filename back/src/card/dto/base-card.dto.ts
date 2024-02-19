@@ -1,6 +1,5 @@
 import { IsString, IsNotEmpty } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-// import { CardCategory } from '../interface/card.interface';
 
 export class BaseCardDto {
   @ApiProperty()
