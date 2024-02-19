@@ -9,7 +9,6 @@ async function bootstrap() {
     .setTitle('FicheMax')
     .setDescription('API de fiches de révisions')
     .setVersion('1.0')
-    .addTag('cours')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
