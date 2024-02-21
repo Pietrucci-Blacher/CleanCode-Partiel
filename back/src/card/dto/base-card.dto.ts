@@ -1,5 +1,6 @@
-import { IsString, IsNotEmpty } from 'class-validator';
+import { IsString, IsNotEmpty, IsDate, IsEnum } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { CardCategory } from '../interface/card.interface';
 
 export class BaseCardDto {
   @ApiProperty()
@@ -23,9 +24,14 @@ export class BaseCardDto {
   tag: string;
 
   @ApiProperty()
-  @IsString()
+  @IsEnum(CardCategory)
   @IsNotEmpty()
-  category: string;
+  category: CardCategory;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsDate()
+  nextReview: Date;
 
   @ApiProperty()
   @IsNotEmpty()
