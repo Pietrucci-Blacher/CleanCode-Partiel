@@ -24,7 +24,7 @@ export const nextCardCategory = (category: CardCategory): CardCategory => {
  */
 export const nextReviewDate = (category: CardCategory): Date => {
   const now = new Date();
-  now.setHours(24, 0, 0, 0);
+  now.setHours(0, 0, 0, 0);
   const nextReview = new Date(now);
 
   switch (category) {
@@ -50,5 +50,5 @@ export const nextReviewDate = (category: CardCategory): Date => {
       return null;
   }
 
-  return new Date(nextReview);
+  return nextReview;
 };

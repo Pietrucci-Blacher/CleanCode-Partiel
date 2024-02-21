@@ -29,26 +29,26 @@ export class CardController {
   constructor(private readonly cardService: CardService) {}
 
   @Get('quizz')
-  @ApiOperation({ summary: 'Get a quiz' })
-  @ApiQuery({ name: 'date', description: 'Date of the quiz' })
+  @ApiOperation({ summary: 'Get all cards to review' })
+  @ApiQuery({ name: 'date', description: 'Date to review' })
   @ApiResponse({
     status: 200,
     description: 'Return a quiz',
     type: [BaseCardDto],
   })
-  quiz(@Query('date') date: string): Promise<Card[]> {
+  quizz(@Query('date') date: string): Promise<Card[]> {
     return this.cardService.quizz(date);
   }
 
   @Get()
   @ApiOperation({ summary: 'Get all cards' })
-  @ApiQuery({ name: 'tag', description: 'tag card' })
+  @ApiQuery({ name: 'tag', description: 'tag of card', required: false })
   @ApiResponse({
     status: 200,
     description: 'Return all cards.',
     type: [BaseCardDto],
   })
-  findAll(@Query('tag') tag: string): Promise<Card[]> {
+  findAll(@Query('tag') tag?: string): Promise<Card[]> {
     if (tag) return this.cardService.findByTag(tag);
     return this.cardService.findAll();
   }
@@ -92,24 +92,25 @@ export class CardController {
   }
 
   @Delete(':id')
-  @ApiParam({ name: 'id', description: 'Card id' })
   @ApiOperation({ summary: 'Delete a card by id' })
+  @ApiParam({ name: 'id', description: 'Card id' })
   async remove(@Param('id') id: string): Promise<void> {
     await this.cardService.remove(id);
   }
 
   @Patch(':id/answer')
+  @ApiOperation({ summary: 'Respond to a card' })
   @ApiParam({ name: 'id', description: 'Card id' })
-  @ApiOperation({ summary: 'Update a card answer by id' })
   @ApiResponse({
     status: 204,
     description: 'The card has been successfully updated',
   })
+  @ApiResponse({ status: 404, description: 'Card not found' })
   @HttpCode(204)
-  answer(
+  async answer(
     @Param('id') id: string,
     @Body() { isValid }: AnswerCardDto,
   ): Promise<void> {
-    return this.cardService.answer(id, isValid);
+    await this.cardService.answer(id, isValid);
   }
 }
