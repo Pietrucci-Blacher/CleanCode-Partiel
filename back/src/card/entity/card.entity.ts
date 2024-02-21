@@ -6,7 +6,9 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { CardCategory } from '../interface/card.interface';
-import { nextReviewDate } from '../utils/card.utils';
+import { UtilsService } from '../../utils/utils.service';
+
+const utilsService = new UtilsService();
 
 @Entity()
 export class Card {
@@ -29,7 +31,10 @@ export class Card {
   })
   category: CardCategory;
 
-  @Column({ type: Date, default: nextReviewDate(CardCategory.FIRST) })
+  @Column({
+    type: Date,
+    default: utilsService.nextReviewDate(CardCategory.FIRST),
+  })
   nextReview: Date;
 
   @CreateDateColumn()

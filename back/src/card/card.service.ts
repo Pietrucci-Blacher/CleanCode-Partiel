@@ -4,15 +4,16 @@ import { Repository } from 'typeorm';
 import { Card } from './entity/card.entity';
 import { CreateCardDto } from './dto/create-card.dto';
 import { UpdateCardDto } from './dto/update-card.dto';
-import { nextCardCategory, nextReviewDate } from './utils/card.utils';
 import { CardCategory } from './interface/card.interface';
 import { LessThanOrEqual } from 'typeorm';
+import { UtilsService } from '../utils/utils.service';
 
 @Injectable()
 export class CardService {
   constructor(
     @InjectRepository(Card)
     private readonly cardRepository: Repository<Card>,
+    private readonly utilsService: UtilsService,
   ) {}
 
   /**
@@ -99,9 +100,13 @@ export class CardService {
       return;
     }
 
-    const category: CardCategory = nextCardCategory(card.category);
+    const category: CardCategory = this.utilsService.nextCardCategory(
+      card.category,
+    );
     card.category = isValid ? category : CardCategory.FIRST;
-    card.nextReview = nextReviewDate(isValid ? category : CardCategory.FIRST);
+    card.nextReview = this.utilsService.nextReviewDate(
+      isValid ? category : CardCategory.FIRST,
+    );
 
     await this.cardRepository.save(card);
   }
