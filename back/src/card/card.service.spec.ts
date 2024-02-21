@@ -7,15 +7,18 @@ import { CreateCardDto } from './dto/create-card.dto';
 import { UpdateCardDto } from './dto/update-card.dto';
 import { cardStub, cardsStub } from './stub/card.stub';
 import { CardCategory } from './interface/card.interface';
-import { nextReviewDate } from './utils/card.utils';
 import { LessThanOrEqual } from 'typeorm';
+import { UtilsService } from '../utils/utils.service';
+import { UtilsModule } from '../utils/utils.module';
 
 describe('CardService', () => {
   let service: CardService;
   let repository: Repository<Card>;
+  let utilsService: UtilsService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [UtilsModule],
       providers: [
         CardService,
         {
@@ -33,6 +36,7 @@ describe('CardService', () => {
 
     service = module.get<CardService>(CardService);
     repository = module.get<Repository<Card>>(getRepositoryToken(Card));
+    utilsService = module.get<UtilsService>(UtilsService);
   });
 
   it('should be defined', () => {
@@ -145,7 +149,7 @@ describe('CardService', () => {
       const expected: Card = {
         ...cardStub,
         category: CardCategory.SECOND,
-        nextReview: nextReviewDate(CardCategory.SECOND),
+        nextReview: utilsService.nextReviewDate(CardCategory.SECOND),
       };
 
       expect(repository.findOneBy).toHaveBeenCalledWith({ id });
@@ -184,7 +188,7 @@ describe('CardService', () => {
       const expected: Card = {
         ...cardStub,
         category: CardCategory.FIRST,
-        nextReview: nextReviewDate(CardCategory.FIRST),
+        nextReview: utilsService.nextReviewDate(CardCategory.FIRST),
       };
 
       expect(repository.findOneBy).toHaveBeenCalledWith({ id });
