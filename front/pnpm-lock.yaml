@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  mande:
+    specifier: ^2.0.8
+    version: 2.0.8
   million:
     specifier: ^2.6.4
     version: 2.6.4
@@ -2066,6 +2069,10 @@ packages:
     dependencies:
       yallist: 4.0.0
     dev: true
+
+  /mande@2.0.8:
+    resolution: {integrity: sha512-nqiiaQbswPuHTvkwh8XExhY650qBwSJefyB1+P9Llj8v603aScSrUBmc124fSnVCP+MFZWNBhHKJjsxr7f1tLg==}
+    dev: false
 
   /merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
