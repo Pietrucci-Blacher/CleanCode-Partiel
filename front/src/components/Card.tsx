@@ -4,11 +4,10 @@ import React, { useState } from 'react';
 interface CardProps {
   title: string;
   description: string;
-  imageSrc: string;
   tags: string[];
 }
 
-const Card: React.FC<CardProps> = ({ title, description, imageSrc, tags }) => {
+const Card: React.FC<CardProps> = ({ title, description, tags }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
@@ -35,7 +34,6 @@ const Card: React.FC<CardProps> = ({ title, description, imageSrc, tags }) => {
         className="max-w-sm rounded overflow-hidden shadow-lg bg-white cursor-pointer"
         onClick={toggleModal}
       >
-        <img className="w-full" src={imageSrc} alt={title} />
         <div className="px-6 py-4">
           <header>
             <h2 className="font-bold text-xl mb-2">{title}</h2>
