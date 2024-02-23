@@ -1,0 +1,76 @@
+<mxfile host="app.diagrams.net" modified="2024-02-23T20:34:56.603Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="pArJw2R_Eo5klHa-zFPg" version="23.1.6" type="device">
+  <diagram name="Page-1" id="Y-7ZhqLQ3pdVqvX0049E">
+    <mxGraphModel dx="1493" dy="819" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="M5rRubDB2MsP1WYWyr0x-1" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FEEEA0;strokeColor=#666666;fontColor=#333333;gradientColor=none;fillStyle=auto;" parent="1" vertex="1">
+          <mxGeometry x="60" y="15.5" width="714.5" height="714.5" as="geometry" />
+        </mxCell>
+        <mxCell id="M5rRubDB2MsP1WYWyr0x-2" value="&lt;font style=&quot;font-size: 22px;&quot;&gt;Adaptateurs primaires&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="294" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="M5rRubDB2MsP1WYWyr0x-3" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#E3F7D8;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="164.63" y="115.63" width="498.75" height="498.75" as="geometry" />
+        </mxCell>
+        <mxCell id="M5rRubDB2MsP1WYWyr0x-4" value="&lt;font style=&quot;font-size: 22px;&quot;&gt;Services d&#39;application&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="294" y="120" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="M5rRubDB2MsP1WYWyr0x-5" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Adaptateurs secondaires&lt;/font&gt;&lt;span style=&quot;color: rgb(236, 236, 236); font-family: Söhne, ui-sans-serif, system-ui, -apple-system, &amp;quot;Segoe UI&amp;quot;, Roboto, Ubuntu, Cantarell, &amp;quot;Noto Sans&amp;quot;, sans-serif, &amp;quot;Helvetica Neue&amp;quot;, Arial, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;, &amp;quot;Segoe UI Symbol&amp;quot;, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; text-align: left; background-color: rgb(33, 33, 33);&quot;&gt; &lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#CEE9E8;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="269" y="220" width="290" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="M5rRubDB2MsP1WYWyr0x-6" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Gestion des Utilisateurs&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rotation=90;horizontal=0;flipV=1;flipH=0;" parent="1" vertex="1">
+          <mxGeometry x="394" y="585" width="40" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="M5rRubDB2MsP1WYWyr0x-7" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Gestion des Fiches&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="344" y="180" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="M5rRubDB2MsP1WYWyr0x-8" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Questionnaire&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;horizontal=0;flipV=1;rotation=90;" parent="1" vertex="1">
+          <mxGeometry x="560" y="350" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="M5rRubDB2MsP1WYWyr0x-9" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Gestion des Tags &lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="349" y="550" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="M5rRubDB2MsP1WYWyr0x-10" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Gestion des Notifications &lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="324" y="280" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="M5rRubDB2MsP1WYWyr0x-11" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Stockage des Données&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="329" y="425" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="M5rRubDB2MsP1WYWyr0x-12" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Interfaces utilisateur&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;horizontal=0;rotation=90;" parent="1" vertex="1">
+          <mxGeometry x="663.38" y="350" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="w0auem0sTwTLmyj-GWDW-5" value="Protocol &lt;br&gt;spécifique à la BDD" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="w0auem0sTwTLmyj-GWDW-3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="417.25" y="740" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="w0auem0sTwTLmyj-GWDW-3" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Base de &lt;br&gt;Donnée&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="377.25" y="820" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="w0auem0sTwTLmyj-GWDW-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="w0auem0sTwTLmyj-GWDW-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="820" y="364.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="w0auem0sTwTLmyj-GWDW-8" value="HTTP" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="w0auem0sTwTLmyj-GWDW-7" vertex="1" connectable="0">
+          <mxGeometry x="0.0525" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="w0auem0sTwTLmyj-GWDW-6" value="&lt;span style=&quot;font-size: 15px;&quot;&gt;Extranet&lt;br&gt;&lt;/span&gt;Web" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="940" y="340" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="IWO48AfXjlOdZjK8NSt1-2" value="Dans la section des Adaptateurs primaires, nous avons inclus l&#39;interface et la gestion des utilisateurs car ce sont les premiers éléments pris en compte lors de l&#39;arrivée sur le site." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="40.5" y="880" width="960" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="IWO48AfXjlOdZjK8NSt1-3" value="Ensuite, dans la section des Services d&#39;application, nous avons intégré le questionnaire, la gestion des tags et la gestion des fiches, car cette partie constitue l&#39;utilité principale du site" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="40" y="910" width="990" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="IWO48AfXjlOdZjK8NSt1-4" value="Ensuite, dans la section des Services d&#39;application, nous avons inclus le stockage des données et la gestion des notifications, car cette partie est essentielle pour l&#39;utilité du site." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="40.5" y="954.38" width="960" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
