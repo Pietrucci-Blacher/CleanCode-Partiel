@@ -1,5 +1,5 @@
-"use client";
 import React, { useState } from 'react';
+import { Typography, Card, CardContent, Box, Chip, styled } from '@mui/material';
 
 interface CardProps {
   title: string;
@@ -7,56 +7,86 @@ interface CardProps {
   tags: string[];
 }
 
-const Card: React.FC<CardProps> = ({ title, description, tags }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const FlipCard = styled('div')({
+  perspective: '1000px',
+  width: '345px', // Largeur fixe
+  height: '200px', // Hauteur fixe
+  margin: 'auto',
+});
 
-  const toggleModal = () => setIsModalOpen(!isModalOpen);
+const FlipCardInner = styled('div')<{ flipped: boolean }>(
+  ({ flipped }) => ({
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    textAlign: 'center',
+    transition: 'transform 0.8s',
+    transformStyle: 'preserve-3d',
+    transform: flipped ? 'rotateY(180deg)' : 'none',
+  })
+);
 
-  const renderModal = () => {
-    if (!isModalOpen) return null;
+const FlipCardFace = styled('div')({
+  position: 'absolute',
+  width: '100%',
+  height: '100%',
+  backfaceVisibility: 'hidden',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  overflow: 'hidden',
+});
 
-    return (
-      <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
-        <div className="bg-white p-8 rounded-lg">
-          <h2 className="font-bold text-xl mb-4">{title}</h2>
-          <p className="text-gray-700">{description}</p>
-          <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={toggleModal}>
-            Close
-          </button>
-        </div>
-      </div>
-    );
-  };
+const FlipCardFront = styled(FlipCardFace)({
+  backgroundColor: 'white',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+});
+
+const FlipCardBack = styled(FlipCardFace)({
+  backgroundColor: 'white',
+  transform: 'rotateY(180deg)',
+});
+
+const CardComponent: React.FC<CardProps> = ({ title, description, tags }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  const toggleFlip = () => setIsFlipped(!isFlipped);
 
   return (
-    <div className="relative">
-      <article
-        className="max-w-sm rounded overflow-hidden shadow-lg bg-white cursor-pointer"
-        onClick={toggleModal}
-      >
-        <div className="px-6 py-4">
-          <header>
-            <h2 className="font-bold text-xl mb-2">{title}</h2>
-          </header>
-          <p className="text-gray-700 text-base">{description}</p>
-        </div>
-        <footer className="px-6 py-4">
-          <ul className="flex flex-wrap">
-            {tags.map((tag, index) => (
-              <li
-                key={index}
-                className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-              >
-                #{tag}
-              </li>
-            ))}
-          </ul>
-        </footer>
-      </article>
-
-      {renderModal()}
-    </div>
+    <FlipCard onClick={toggleFlip}>
+      <FlipCardInner flipped={isFlipped}>
+        <FlipCardFront>
+          <Card sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <CardContent sx={{ flex: '1 0 auto', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <Typography gutterBottom variant="h5" component="div">
+                {title}
+              </Typography>
+              <Box sx={{ alignSelf: 'flex-start', p: 1 }}>
+                {tags.map((tag, index) => (
+                  <Chip key={index} label={`#${tag}`} size="small" />
+                ))}
+              </Box>
+            </CardContent>
+          </Card>
+        </FlipCardFront>
+        <FlipCardBack>
+          <Card sx={{ width: '100%', height: '100%' }}>
+            <CardContent sx={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center',
+              textAlign: 'center',
+              width: '100%', 
+              height: '100%' 
+            }}>
+              <Typography variant="body2">{description}</Typography>
+            </CardContent>
+          </Card>
+        </FlipCardBack>
+      </FlipCardInner>
+    </FlipCard>
   );
 };
 
-export default Card;
+export default CardComponent;
