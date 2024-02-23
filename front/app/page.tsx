@@ -123,7 +123,6 @@ const AnyPage: React.FC = () => {
             </Button>
           </Box>
         </Modal>
-        <Grid cards={filteredCards} />
       </Box>
     </div>
   );
