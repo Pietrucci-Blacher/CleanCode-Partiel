@@ -3,11 +3,12 @@ import Card from './Card';
 import { useCards } from '@/hooks/useCards';
 
 const Grid: React.FC = () => {
-  const { getAllCards, cards } = useCards();
+  const { getQuizzCard, cards } = useCards();
+  console.log('cards', cards);
 
   useEffect(() => {
-    getAllCards();
-  }, [getAllCards]);
+    getQuizzCard();
+  }, [getQuizzCard]);
 
   return (
     <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

@@ -1,26 +1,22 @@
 import { useState, useCallback } from 'react';
 import * as cardService from '@/services/cardService';
-
-interface Card {
-  question: string;
-  answer: string;
-  tag: string;
-}
+import { ICard } from '@/interface/card.interface';
 
 interface UseCardHook {
-  cards: Card[];
+  cards: ICard[];
   loading: boolean;
   error: string | null;
-  createCard: (payload: Card) => Promise<void>;
+  createCard: (payload: ICard) => Promise<void>;
   getCardById: (cardId: string) => Promise<void>;
   getAllCards: () => Promise<void>;
-  updateCardById: (cardId: string, payload: Card) => Promise<void>;
+  updateCardById: (cardId: string, payload: ICard) => Promise<void>;
   deleteCardById: (cardId: string) => Promise<void>;
-  answerCard: (cardId: string, answer: string) => Promise<void>;
+  answerCard: (cardId: string, answer: boolean) => Promise<void>;
+  getQuizzCard: () => Promise<void>;
 }
 
 export const useCards = (): UseCardHook => {
-  const [cards, setCards] = useState<Card[]>([]);
+  const [cards, setCards] = useState<ICard[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -38,7 +34,7 @@ export const useCards = (): UseCardHook => {
     }
   }, []);
 
-  const createCard = useCallback(async (payload: Card) => {
+  const createCard = useCallback(async (payload: ICard) => {
     await handleApiResponse(() => cardService.createCard(payload));
   }, [handleApiResponse]);
 
@@ -59,7 +55,7 @@ export const useCards = (): UseCardHook => {
     }
   }, [handleApiResponse]);
 
-  const updateCardById = useCallback(async (cardId: string, payload: Card) => {
+  const updateCardById = useCallback(async (cardId: string, payload: ICard) => {
     await handleApiResponse(() => cardService.updateCardById(cardId, payload));
   }, [handleApiResponse]);
 
@@ -67,9 +63,16 @@ export const useCards = (): UseCardHook => {
     await handleApiResponse(() => cardService.deleteCardById(cardId));
   }, [handleApiResponse]);
 
-  const answerCard = useCallback(async (cardId: string, answer: string) => {
-    const payload = { answer };
+  const answerCard = useCallback(async (cardId: string, isValid: boolean) => {
+    const payload: { isValid: boolean } = { isValid };
     await handleApiResponse(() => cardService.answerCard(cardId, payload));
+  }, [handleApiResponse]);
+
+  const getQuizzCard = useCallback(async () => {
+    const quizzCard = await handleApiResponse(cardService.getQuizzCard);
+    if (Array.isArray(quizzCard)) {
+      setCards(quizzCard);
+    }
   }, [handleApiResponse]);
 
   return {
@@ -82,5 +85,6 @@ export const useCards = (): UseCardHook => {
     updateCardById,
     deleteCardById,
     answerCard,
+    getQuizzCard,
   };
 };
