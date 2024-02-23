@@ -1,4 +1,4 @@
-// Card.tsx
+"use client";
 import React, { useState } from 'react';
 
 interface CardProps {
@@ -11,8 +11,22 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ title, description, imageSrc, tags }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
+
+  const renderModal = () => {
+    if (!isModalOpen) return null;
+
+    return (
+      <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
+        <div className="bg-white p-8 rounded-lg">
+          <h2 className="font-bold text-xl mb-4">{title}</h2>
+          <p className="text-gray-700">{description}</p>
+          <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={toggleModal}>
+            Close
+          </button>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -42,17 +56,7 @@ const Card: React.FC<CardProps> = ({ title, description, imageSrc, tags }) => {
         </footer>
       </article>
 
-      {isModalOpen && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
-          <div className="bg-white p-8 rounded-lg">
-            <h2 className="font-bold text-xl mb-4">{title}</h2>
-            <p className="text-gray-700">{description}</p>
-            <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={toggleModal}>
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+      {renderModal()}
     </div>
   );
 };
