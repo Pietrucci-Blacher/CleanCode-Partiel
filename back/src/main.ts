@@ -6,6 +6,13 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors({
+    // origin: process.env.FRONT_ENDPOINT,
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type, Accept',
+  });
+
   const config = new DocumentBuilder()
     .setTitle('FicheMax')
     .setDescription('API de fiches de révisions')
