@@ -1,6 +1,7 @@
 import { mande } from "mande";
 
-const CARD_PATH = '/cards';
+const API_ENDPOINT = process.env.NEXT_PUBLIC_API_ENDPOINT;
+const CARD_PATH = `${API_ENDPOINT}/cards`;
 
 export const createCard = (payload: object): Promise<any> => {
     return mande(CARD_PATH).post(payload);
