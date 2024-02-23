@@ -1,35 +1,109 @@
 "use client";
-import React, { useState } from 'react';
-import Grid from '@/components/Grid';
-import { useCards } from '@/hooks/useCards'; // Assurez-vous que le chemin d'accès est correct
 
+import React, { useState, useEffect, ChangeEvent } from 'react';
+import { Modal, Box, Typography, TextField, Button } from '@mui/material';
+
+import Grid from '@/components/Grid';
+import { useCards } from '@/hooks/useCards';
+
+interface Card {
+  question: string;
+  answer: string;
+  tag: string;
+}
+
+const modalStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  boxShadow: 24,
+  p: 4,
+};
 
 const AnyPage: React.FC = () => {
-  const { createCard } = useCards();
+  const { cards, createCard, getAllCards } = useCards(); // Destructure to get getAllCards method
+  const [open, setOpen] = useState<boolean>(false);
+  const [newCard, setNewCard] = useState<Card>({ question: '', answer: '', tag: '' });
+
+  useEffect(() => {
+    // Fetch all cards on component mount
+    getAllCards();
+  }, [getAllCards]);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleCreateCard = async () => {
-    const newCard = {
-      title: '',
-      description: '',
-      imageSrc: '',
-      tags: ['nouveauTag']
-    };
+    if (newCard.question && newCard.answer && newCard.tag) {
+      await createCard(newCard);
+      handleClose();
+      setNewCard({ question: '', answer: '', tag: '' }); // Reset form
+      await getAllCards(); // Refresh the list of cards after adding
+    } else {
+      console.error("Tous les champs doivent être remplis.");
+    }
+  };
 
-    // Supposons que `createCard` a été ajusté pour accepter ce format
-    await createCard({
-      question: newCard.title,
-      answer: newCard.description,
-      tag: newCard.tags[0] // Adaptez selon la logique de votre backend
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setNewCard({
+      ...newCard,
+      [e.target.name]: e.target.value,
     });
   };
 
   return (
     <div>
-      <h1>Your Page Title</h1>
-      <button onClick={handleCreateCard} className="mb-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      <Typography variant="h4" gutterBottom>
+        Mes fiches
+      </Typography>
+      <Button onClick={handleOpen} sx={{ bgcolor: 'blue.500', '&:hover': { bgcolor: 'blue.700' }, fontWeight: 'bold', py: 2, px: 4, borderRadius: 1 }}>
         Créer une Carte
-      </button>
-      <Grid />
+      </Button>
+      <Modal open={open} onClose={handleClose}>
+        <Box sx={modalStyle}>
+          <Typography id="modal-modal-title" variant="h6">
+            Nouvelle carte
+          </Typography>
+          <TextField
+            margin="dense"
+            id="question"
+            name="question"
+            label="Question"
+            type="text"
+            fullWidth
+            value={newCard.question}
+            onChange={handleChange}
+          />
+          <TextField
+            margin="dense"
+            id="answer"
+            name="answer"
+            label="Réponse"
+            fullWidth
+            multiline
+            rows={4}
+            value={newCard.answer}
+            onChange={handleChange}
+          />
+          <TextField
+            margin="dense"
+            id="tag"
+            name="tag"
+            label="Tag"
+            type="text"
+            fullWidth
+            value={newCard.tag}
+            onChange={handleChange}
+          />
+          <Button onClick={handleCreateCard} sx={{ mt: 4, bgcolor: 'blue.500', '&:hover': { bgcolor: 'blue.700' }, fontWeight: 'bold', py: 2, px: 4, borderRadius: 1 }}>
+            Enregistrer
+          </Button>
+        </Box>
+      </Modal>
+      <Grid cards={cards} /> {/* Ensure Grid takes in cards as props if needed */}
     </div>
   );
 };
