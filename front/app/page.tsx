@@ -24,12 +24,11 @@ const modalStyle = {
 };
 
 const AnyPage: React.FC = () => {
-  const { cards, createCard, getAllCards } = useCards(); // Destructure to get getAllCards method
+  const { cards, createCard, getAllCards } = useCards();
   const [open, setOpen] = useState<boolean>(false);
   const [newCard, setNewCard] = useState<Card>({ question: '', answer: '', tag: '' });
 
   useEffect(() => {
-    // Fetch all cards on component mount
     getAllCards();
   }, [getAllCards]);
 
@@ -40,8 +39,8 @@ const AnyPage: React.FC = () => {
     if (newCard.question && newCard.answer && newCard.tag) {
       await createCard(newCard);
       handleClose();
-      setNewCard({ question: '', answer: '', tag: '' }); // Reset form
-      await getAllCards(); // Refresh the list of cards after adding
+      setNewCard({ question: '', answer: '', tag: '' });
+      await getAllCards();
     } else {
       console.error("Tous les champs doivent être remplis.");
     }
@@ -103,7 +102,7 @@ const AnyPage: React.FC = () => {
           </Button>
         </Box>
       </Modal>
-      <Grid cards={cards} /> {/* Ensure Grid takes in cards as props if needed */}
+      <Grid cards={cards} />
     </div>
   );
 };
